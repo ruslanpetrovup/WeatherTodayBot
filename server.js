@@ -40,10 +40,10 @@ app.use("/", async (req, res) => {
     topP: 0.7,
     presencePenalty: 0,
     frequencyPenalty: 0,
-    bestOf: 1,
+    bestOf: 3,
     n: 1,
     stream: false,
-    stop: [text.split(" ")],
+    stop: text.split(" "),
   });
 
   console.log(text.split(" ")[0]);
