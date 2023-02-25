@@ -20,10 +20,21 @@ app.use(bodyParser.json());
 bot.on("message", async (msg) => {
   if (msg.text === "/start") {
     bot.sendMessage("Напиши мне что-то");
+    return;
   }
+
+  const result = axios.post(`${process.env.SERVER}/`, {
+    text: msg.text,
+  });
+  console.log(result);
+  bot.sendMessage(msg.chat.id, result);
+});
+
+app.use("/", async (req, res) => {
+  const { text } = req.body;
   const gptResponse = await openai.complete({
     engine: "davinci",
-    prompt: msg.text,
+    prompt: text,
     maxTokens: 100,
     temperature: 0.1,
     topP: 0.5,
@@ -32,31 +43,10 @@ bot.on("message", async (msg) => {
     bestOf: 1,
     n: 1,
     stream: false,
-    stop: [msg.text.split(" ")[0]],
+    stop: [text.split(" ")[0]],
   });
 
-  bot.sendMessage(msg.chat.id, gptResponse.data.choices[0].text);
-});
-
-app.use("/", (req, res) => {
-  (async () => {
-    const gptResponse = await openai.complete({
-      engine: "davinci",
-      prompt: "Придумай название для моего кафе",
-      maxTokens: 100,
-      temperature: 0.1,
-      topP: 0.5,
-      presencePenalty: 0,
-      frequencyPenalty: 0,
-      bestOf: 1,
-      n: 1,
-      stream: false,
-      stop: ["Придумай"],
-    });
-
-    console.log(gptResponse.data);
-    res.send(gptResponse.data);
-  })();
+  res.send(gptResponse.data.choices[0].text);
 });
 
 app.listen(8000, () => {
