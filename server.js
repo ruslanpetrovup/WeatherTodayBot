@@ -18,6 +18,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 bot.on("message", async (msg) => {
+  if (msg.text === "/start") {
+    bot.sendMessage("Напиши мне что-то");
+  }
   const gptResponse = await openai.complete({
     engine: "davinci",
     prompt: msg.text,
