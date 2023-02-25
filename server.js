@@ -7,6 +7,7 @@ const OpenAI = require("openai-api");
 const openai = new OpenAI(process.env.TOKEN_API);
 const TelegramBot = require("node-telegram-bot-api");
 const token = "853161826:AAGXKhWdrHVexfWj_Gmlgp40wOtoh8SaGMc";
+console.log(process.env.TOKEN_API);
 
 const bot = new TelegramBot(token, {
   polling: { autoStart: true, params: { allowed_updates: true } },
