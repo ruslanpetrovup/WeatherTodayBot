@@ -27,30 +27,42 @@ bot.on("message", async (msg) => {
     text: msg.text,
   });
   console.log(result);
-  bot.sendMessage(msg.chat.id, result.data);
+  // bot.sendMessage(msg.chat.id, result.data);
+  return;
 });
 
 app.use("/", async (req, res) => {
   const { text } = req.body;
-  const gptResponse = await openai.complete({
-    engine: "davinci",
+  const response = await openai.createImage({
     prompt: text,
-    maxTokens: 600,
-    temperature: 0.5,
-    topP: 0.9,
-    presencePenalty: 0,
-    frequencyPenalty: 0,
-    bestOf: 3,
     n: 1,
-    model: "text-davinci-002",
-    stream: false,
-    stop: text.split(" ")[0],
+    size: "1024x1024",
   });
-
-  console.log(text.split(" ")[0]);
-
-  res.send(gptResponse.data.choices[0].text);
+  res.send(response.data.data[0].url);
+  console.log(response.data.data[0].url);
 });
+
+// app.use("/", async (req, res) => {
+//   const { text } = req.body;
+//   const gptResponse = await openai.complete({
+//     engine: "davinci",
+//     prompt: text,
+//     maxTokens: 600,
+//     temperature: 0.5,
+//     topP: 0.9,
+//     presencePenalty: 0,
+//     frequencyPenalty: 0,
+//     bestOf: 3,
+//     n: 1,
+//     model: "text-davinci-002",
+//     stream: false,
+//     stop: text.split(" ")[0],
+//   });
+
+//   console.log(text.split(" ")[0]);
+
+//   res.send(gptResponse.data.choices[0].text);
+// });
 
 app.listen(8000, () => {
   console.log("server start");
