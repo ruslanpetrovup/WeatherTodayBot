@@ -43,7 +43,7 @@ app.use("/", async (req, res) => {
     bestOf: 3,
     n: 1,
     stream: false,
-    stop: text.split(" "),
+    stop: text.split(" ").slice(0, text.split(" ").length - 1),
   });
 
   console.log(text.split(" ")[0]);
