@@ -43,7 +43,10 @@ bot.on("message", async (msg) => {
       `Текущая температура в городе ${weatherData.city_name} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
     );
   } catch (err) {
-    bot.sendMessage(chatId, "Произошла ошибка, попробуйте еще раз");
+    bot.sendMessage(
+      chatId,
+      "Произошла ошибка, попробуйте еще раз. Может вы ввели не правильно название города"
+    );
   }
 });
 
