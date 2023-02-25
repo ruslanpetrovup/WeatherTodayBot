@@ -23,7 +23,7 @@ bot.on("message", async (msg) => {
     return;
   }
 
-  const result = axios.post(`${process.env.SERVER}/`, {
+  const result = await axios.post(`${process.env.SERVER}/`, {
     text: msg.text,
   });
   console.log(result);
