@@ -37,7 +37,7 @@ app.use("/", async (req, res) => {
     prompt: text,
     maxTokens: 600,
     temperature: 0.5,
-    topP: 0.7,
+    topP: 0.9,
     presencePenalty: 0,
     frequencyPenalty: 0,
     bestOf: 3,
