@@ -24,6 +24,10 @@ bot.on("message", async (msg) => {
   }
 });
 
+app.use("/", (req, res) => {
+  res.send("Тут пусто. Иди в бот");
+});
+
 // app.use("/", async (req, res) => {
 //   const { text } = req.body;
 //   const gptResponse = await openai.complete({
