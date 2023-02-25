@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 bot.on("message", async (msg) => {
   if (msg.text === "/start") {
-    bot.sendMessage("Напиши мне что-то");
+    bot.sendMessage(msg.chat.id, "Напиши мне что-то");
     return;
   }
 
@@ -36,7 +36,7 @@ app.use("/", async (req, res) => {
     engine: "davinci",
     prompt: text,
     maxTokens: 100,
-    temperature: 0.1,
+    temperature: 0.3,
     topP: 0.5,
     presencePenalty: 0,
     frequencyPenalty: 0,
