@@ -25,8 +25,15 @@ bot.on("message", async (msg) => {
       `https://api.weatherbit.io/v2.0/current?city=${CITY_NAME}&key=${process.env.TOKEN_WEATHER}`
     );
     const weatherData = locationResponse.data.data[0];
-    console.log(weatherData.weather);
 
+    // const weatherIcon = await axios(
+    //   `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`
+    // );
+    // console.log(weatherIcon);
+    await bot.sendPhoto(
+      chatId,
+      `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`
+    );
     console.log(
       `Текущая температура в городе ${weatherData.city_name} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
     );
