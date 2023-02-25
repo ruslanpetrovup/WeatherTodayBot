@@ -22,37 +22,6 @@ bot.on("message", async (msg) => {
     bot.sendMessage(msg.chat.id, "Напиши мне что-то");
     return;
   }
-
-  const result = await axios.post(`${process.env.SERVER}/`, {
-    text: msg.text,
-  });
-  console.log(result?.data?.data[0].url);
-  bot.sendPhoto(msg.chat.id, result?.data?.data[0].url);
-  return;
-});
-
-app.use("/", async (req, res) => {
-  const { text } = req.body;
-  const url = "https://api.openai.com/v1/images/generations";
-
-  const params = {
-    model: "image-alpha-001",
-    prompt: text,
-    size: "512x512",
-    response_format: "url",
-  };
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.TOKEN_API}`,
-    },
-  };
-
-  const response = await axios.post(url, params, config);
-
-  // console.log(response.data);
-  return res.send(response.data);
 });
 
 // app.use("/", async (req, res) => {
