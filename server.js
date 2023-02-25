@@ -26,10 +26,6 @@ bot.on('message', async (msg) => {
     );
     const weatherData = locationResponse.data.data[0];
 
-    // const weatherIcon = await axios(
-    //   `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`
-    // );
-    // console.log(weatherIcon);
     await bot.sendPhoto(
       chatId,
       `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`
@@ -51,7 +47,7 @@ bot.on('message', async (msg) => {
 });
 
 app.use('/', (req, res) => {
-  res.send('Тут пусто. Иди в бот');
+  res.send('Тут пусто. Иди в бот @novos_bot');
 });
 
 app.listen(8000, () => {
