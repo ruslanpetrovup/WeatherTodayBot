@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const OpenAI = require("openai-api");
 const openai = new OpenAI(
-  "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"
+  "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"
 );
 const TelegramBot = require("node-telegram-bot-api");
 const token = "853161826:AAGXKhWdrHVexfWj_Gmlgp40wOtoh8SaGMc";
