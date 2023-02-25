@@ -35,7 +35,7 @@ app.use("/", async (req, res) => {
   const gptResponse = await openai.complete({
     engine: "davinci",
     prompt: text,
-    maxTokens: 100,
+    maxTokens: 1000,
     temperature: 0.3,
     topP: 0.5,
     presencePenalty: 0,
@@ -45,6 +45,8 @@ app.use("/", async (req, res) => {
     stream: false,
     stop: [text.split(" ")[0]],
   });
+
+  console.log(text.split(" ")[0]);
 
   res.send(gptResponse.data.choices[0].text);
 });
