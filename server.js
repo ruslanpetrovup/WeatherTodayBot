@@ -3,7 +3,7 @@ const axios = require("axios");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-const OpenAI = require("openai-api");
+const OpenAI = require("openai");
 require("dotenv").config();
 const openai = new OpenAI(process.env.TOKEN_API);
 const TelegramBot = require("node-telegram-bot-api");
@@ -33,13 +33,25 @@ bot.on("message", async (msg) => {
 
 app.use("/", async (req, res) => {
   const { text } = req.body;
-  const response = await openai.createImage({
+  const url = "https://api.openai.com/v1/images/generations";
+
+  const params = {
+    model: "image-alpha-001",
     prompt: text,
-    n: 1,
-    size: "1024x1024",
-  });
-  res.send(response.data.data[0].url);
-  console.log(response.data.data[0].url);
+    size: [512, 512],
+    response_format: "url",
+  };
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.TOKEN_API}`,
+    },
+  };
+
+  const response = await axios.post(url, params, config);
+
+  console.log(response.data);
 });
 
 // app.use("/", async (req, res) => {
