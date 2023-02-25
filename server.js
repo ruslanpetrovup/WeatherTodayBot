@@ -35,7 +35,7 @@ app.use("/", async (req, res) => {
   const gptResponse = await openai.complete({
     engine: "davinci",
     prompt: text,
-    maxTokens: 1000,
+    maxTokens: 600,
     temperature: 0.5,
     topP: 0.7,
     presencePenalty: 0,
