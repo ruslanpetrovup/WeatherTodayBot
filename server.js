@@ -38,7 +38,7 @@ app.use("/", async (req, res) => {
   const params = {
     model: "image-alpha-001",
     prompt: text,
-    size: [512, 512],
+    size: ["512", "512"],
     response_format: "url",
   };
 
