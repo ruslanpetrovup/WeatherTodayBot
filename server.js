@@ -42,6 +42,7 @@ app.use("/", async (req, res) => {
     frequencyPenalty: 0,
     bestOf: 3,
     n: 1,
+    model: "text-davinci-002",
     stream: false,
     stop: text.split(" ")[0],
   });
