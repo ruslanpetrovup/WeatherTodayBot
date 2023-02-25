@@ -24,16 +24,16 @@ bot.on("message", async (msg) => {
     const locationResponse = await axios.get(
       `https://api.weatherbit.io/v2.0/current?city=${CITY_NAME}&key=${process.env.TOKEN_WEATHER}`
     );
-    console.log(locationResponse);
-    const weatherData = response.data.data[0];
+    const weatherData = locationResponse.data.data[0];
+    console.log(weatherData.weather);
 
     console.log(
-      `Текущая температура в городе ${CITY_NAME} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
+      `Текущая температура в городе ${weatherData.city_name} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
     );
 
     bot.sendMessage(
       chatId,
-      `Текущая температура в городе ${CITY_NAME} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
+      `Текущая температура в городе ${weatherData.city_name} составляет ${weatherData.temp}°C (ощущается как ${weatherData.app_temp}°C).`
     );
   } catch (err) {
     bot.sendMessage(chatId, "Произошла ошибка, попробуйте еще раз");
