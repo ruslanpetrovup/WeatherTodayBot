@@ -1,18 +1,18 @@
-const express = require("express");
-const axios = require("axios");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-require("dotenv").config();
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+require('dotenv').config();
 const app = express();
-const TelegramBot = require("node-telegram-bot-api");
+const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(process.env.TOKEN_BOT, { polling: true });
 
 app.use(cors());
 app.use(bodyParser.json());
 
-bot.on("message", async (msg) => {
-  if (msg.text === "/start") {
-    bot.sendMessage(msg.chat.id, "Напиши мне свой город");
+bot.on('message', async (msg) => {
+  if (msg.text === '/start') {
+    bot.sendMessage(msg.chat.id, 'Напиши мне свой город');
     return;
   }
   const chatId = msg.chat.id;
@@ -45,15 +45,15 @@ bot.on("message", async (msg) => {
   } catch (err) {
     bot.sendMessage(
       chatId,
-      "Произошла ошибка, попробуйте еще раз. Может вы ввели не правильно название города"
+      'Произошла ошибка, попробуйте еще раз. Может вы ввели не правильно название города'
     );
   }
 });
 
-app.use("/", (req, res) => {
-  res.send("Тут пусто. Иди в бот");
+app.use('/', (req, res) => {
+  res.send('Тут пусто. Иди в бот');
 });
 
 app.listen(8000, () => {
-  console.log("server start");
+  console.log('server start');
 });
