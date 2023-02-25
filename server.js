@@ -52,6 +52,7 @@ app.use("/", async (req, res) => {
   const response = await axios.post(url, params, config);
 
   console.log(response.data);
+  return res.send(response.data);
 });
 
 // app.use("/", async (req, res) => {
