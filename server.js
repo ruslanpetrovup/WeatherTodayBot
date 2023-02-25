@@ -56,6 +56,6 @@ app.use("/", (req, res) => {
   })();
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(8000, () => {
   console.log("server start");
 });
