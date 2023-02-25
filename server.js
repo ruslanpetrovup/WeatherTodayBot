@@ -27,7 +27,7 @@ bot.on("message", async (msg) => {
     text: msg.text,
   });
   console.log(result);
-  bot.sendMessage(msg.chat.id, result);
+  bot.sendMessage(msg.chat.id, result.data);
 });
 
 app.use("/", async (req, res) => {
