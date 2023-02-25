@@ -26,7 +26,7 @@ bot.on("message", async (msg) => {
   const result = await axios.post(`${process.env.SERVER}/`, {
     text: msg.text,
   });
-  console.log(result.data[0].url);
+  console.log(result.data[0]);
   // bot.sendPhoto(msg.chat.id, result.data.url);
   return;
 });
