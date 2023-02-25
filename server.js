@@ -4,9 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const OpenAI = require("openai-api");
-const openai = new OpenAI(
-  "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"
-);
+const openai = new OpenAI(process.env.TOKEN_API);
 const TelegramBot = require("node-telegram-bot-api");
 const token = "853161826:AAGXKhWdrHVexfWj_Gmlgp40wOtoh8SaGMc";
 
