@@ -10,6 +10,10 @@ const bot = new TelegramBot(process.env.TOKEN_BOT, { polling: true });
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/test', (req, res) => {
+  res.send('Тут пусто. Иди в бот @novos_bot');
+});
+
 bot.setMyCommands([{ command: '/weather', description: 'Узнать погоду в своем городе' }]);
 bot.on('message', async (msg) => {
   return;
@@ -55,10 +59,6 @@ bot.on('message', async (msg) => {
     bot.sendMessage(msg.chat.id, 'Открой меню и выбери нужное действие');
     return;
   }
-});
-
-app.use('/test', (req, res) => {
-  res.send('Тут пусто. Иди в бот @novos_bot');
 });
 
 app.listen(8000, () => {
