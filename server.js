@@ -56,7 +56,7 @@ bot.on('message', async (msg) => {
   }
 });
 
-app.use('/', (req, res) => {
+app.use('/test', (req, res) => {
   res.send('Тут пусто. Иди в бот @novos_bot');
 });
 
