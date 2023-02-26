@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 bot.setMyCommands([{ command: '/weather', description: 'Узнать погоду в своем городе' }]);
 bot.on('message', async (msg) => {
+  return;
   if (msg.text === '/weather') {
     const chatId = msg.chat.id;
     bot.onText(/\/weather/, async (msg) => {
