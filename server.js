@@ -15,6 +15,7 @@ app.use('/test', (req, res) => {
 });
 
 bot.setMyCommands([{ command: '/weather', description: 'Узнать погоду в своем городе' }]);
+
 bot.on('message', async (msg) => {
   if (msg.text === '/weather') {
     const chatId = msg.chat.id;
@@ -50,7 +51,6 @@ bot.on('message', async (msg) => {
         });
       });
     });
-    bot.downloadFile();
     return;
   }
 
